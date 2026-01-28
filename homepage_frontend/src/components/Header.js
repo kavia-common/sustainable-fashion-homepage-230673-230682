@@ -33,6 +33,13 @@ export default function Header() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const onToggle = () => setMobileOpen((v) => !v);
+
+  const onToggleKeyDown = (e) => {
+    // ESC closes the menu for keyboard users.
+    if (e.key === "Escape") setMobileOpen(false);
+  };
+
   return (
     <header className="header" role="banner">
       <div className="container">
@@ -68,8 +75,10 @@ export default function Header() {
             type="button"
             className="mobileNavToggle"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-controls="mobile-menu"
             aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((v) => !v)}
+            onClick={onToggle}
+            onKeyDown={onToggleKeyDown}
           >
             <span />
             <span />
@@ -77,7 +86,11 @@ export default function Header() {
           </button>
         </div>
 
-        <div className={`mobileMenu ${mobileOpen ? "mobileMenuOpen" : ""}`} aria-label="Mobile menu">
+        <div
+          id="mobile-menu"
+          className={`mobileMenu ${mobileOpen ? "mobileMenuOpen" : ""}`}
+          aria-label="Mobile menu"
+        >
           {navItems.map((item) => (
             <a key={item.href} href={item.href} onClick={() => setMobileOpen(false)}>
               {item.label}

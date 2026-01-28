@@ -4,6 +4,37 @@
   color: var(--color-text);
 }
 
+/* Keyboard accessibility: skip link */
+.skipLink {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 1000;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 1px solid rgba(30, 58, 138, 0.22);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-140%);
+  transition: transform 0.2s ease;
+}
+
+.skipLink:focus,
+.skipLink:focus-visible {
+  transform: translateY(0);
+}
+
+/* Ensure anchor navigation doesn't land under the sticky header */
+#categories,
+#reviews,
+#about,
+#sustainability,
+#contact,
+#footer {
+  scroll-margin-top: 96px;
+}
+
 /* ===== Header ===== */
 .header {
   position: sticky;
@@ -171,6 +202,24 @@
 
 .mobileMenuOpen {
   display: block;
+}
+
+.mobileMenu .btn {
+  margin-top: var(--space-3);
+  width: 100%;
+}
+
+/* Motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ===== Hero ===== */
