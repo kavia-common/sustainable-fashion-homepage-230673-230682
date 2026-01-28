@@ -50,7 +50,7 @@ export default function CategoryCard({ title, description, href, iconVariant }) 
       <div className="categoryBody">
         <div className="categoryTitleRow">
           <h3 className="categoryTitle">{title}</h3>
-          <span aria-hidden="true" style={{ color: "rgba(30,58,138,.7)", fontWeight: 700 }}>
+          <span aria-hidden="true" style={{ color: "var(--color-primary)", opacity: 0.7, fontWeight: 700 }}>
             →
           </span>
         </div>

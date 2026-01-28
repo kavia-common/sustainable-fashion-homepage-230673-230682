@@ -409,7 +409,7 @@
 /* ===== Footer ===== */
 .footer {
   margin-top: var(--space-12);
-  background: #0F172A; /* slightly deeper navy */
+  background: var(--color-footer-bg);
   color: rgba(255, 255, 255, 0.86);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }

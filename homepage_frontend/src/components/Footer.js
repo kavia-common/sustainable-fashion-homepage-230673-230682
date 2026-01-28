@@ -94,13 +94,17 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
               />
-              <button type="submit" className="btn" style={{ background: "var(--color-secondary)", color: "#111827" }}>
+              <button
+                type="submit"
+                className="btn"
+                style={{ background: "var(--color-secondary)", color: "var(--color-text)" }}
+              >
                 Sign up
               </button>
             </form>
 
             {status === "success" ? (
-              <p className="footerText" style={{ marginTop: "var(--space-3)", color: "rgba(245,158,11,.95)" }}>
+              <p className="footerText" style={{ marginTop: "var(--space-3)", color: "var(--color-secondary)" }}>
                 Thanks! You’re on the list.
               </p>
             ) : (

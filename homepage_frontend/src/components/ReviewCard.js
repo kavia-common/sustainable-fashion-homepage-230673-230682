@@ -21,7 +21,7 @@ export default function ReviewCard({ name, role, rating, quote }) {
   return (
     <article className="card" style={{ padding: "var(--space-5)" }} aria-label={`Review by ${name}`}>
       <div className="reviewTop">
-        <div style={{ fontWeight: 700, color: "rgba(30,58,138,.92)" }}>{name}</div>
+        <div style={{ fontWeight: 700, color: "var(--color-primary)", opacity: 0.92 }}>{name}</div>
         <Stars rating={rating} />
       </div>
 
