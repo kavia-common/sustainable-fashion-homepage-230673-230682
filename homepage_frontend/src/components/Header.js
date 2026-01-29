@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 /**
  * Simple inline icon for the brand mark.
@@ -33,8 +33,47 @@ export default function Header() {
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const headerRef = useRef(null);
+  const toggleBtnRef = useRef(null);
+  const mobileMenuId = "mobile-menu";
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setMobileOpen(false);
+        // Restore focus to the toggle for keyboard users.
+        window.requestAnimationFrame(() => toggleBtnRef.current?.focus());
+      }
+    };
+
+    // Close when clicking outside of header region (covers both menu + toggle).
+    const onPointerDown = (e) => {
+      const root = headerRef.current;
+      if (!root) return;
+      if (!root.contains(e.target)) {
+        setMobileOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [mobileOpen]);
+
+  const onNavigate = () => {
+    // Close after selecting a menu item (mobile).
+    setMobileOpen(false);
+  };
+
   return (
-    <header className="header" role="banner">
+    <header className="header" role="banner" ref={headerRef}>
       <div className="container">
         <div className="headerInner">
           <a className="brand" href="#top" aria-label="Sustainably homepage">
@@ -65,10 +104,12 @@ export default function Header() {
           </div>
 
           <button
+            ref={toggleBtnRef}
             type="button"
             className="mobileNavToggle"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
+            aria-controls={mobileMenuId}
             onClick={() => setMobileOpen((v) => !v)}
           >
             <span />
@@ -77,16 +118,20 @@ export default function Header() {
           </button>
         </div>
 
-        <div className={`mobileMenu ${mobileOpen ? "mobileMenuOpen" : ""}`} aria-label="Mobile menu">
+        <nav
+          id={mobileMenuId}
+          className={`mobileMenu ${mobileOpen ? "mobileMenuOpen" : ""}`}
+          aria-label="Mobile menu"
+        >
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setMobileOpen(false)}>
+            <a key={item.href} href={item.href} onClick={onNavigate}>
               {item.label}
             </a>
           ))}
-          <a className="btn" href="#categories" onClick={() => setMobileOpen(false)}>
+          <a className="btn" href="#categories" onClick={onNavigate}>
             Shop now
           </a>
-        </div>
+        </nav>
       </div>
     </header>
   );

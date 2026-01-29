@@ -49,9 +49,11 @@ export default function CategoriesGrid() {
           </a>
         </div>
 
-        <div className="grid4">
+        <div className="grid4" role="list" aria-label="Product categories">
           {categories.map((c) => (
-            <CategoryCard key={c.title} {...c} />
+            <div key={c.title} role="listitem">
+              <CategoryCard {...c} />
+            </div>
           ))}
         </div>
       </div>

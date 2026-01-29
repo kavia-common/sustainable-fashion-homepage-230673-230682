@@ -1,6 +1,21 @@
 import React, { useMemo } from "react";
 import ReviewCard from "./ReviewCard";
 
+function StarsInline({ rating }) {
+  const full = Math.max(0, Math.min(5, Math.round(rating)));
+  const stars = Array.from({ length: 5 }, (_, i) => i < full);
+
+  return (
+    <span className="stars" aria-label={`${rating} out of 5 stars`}>
+      {stars.map((isFull, idx) => (
+        <span key={idx} aria-hidden="true">
+          {isFull ? "★" : "☆"}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 // PUBLIC_INTERFACE
 export default function ReviewsSection() {
   /** Customer reviews in a responsive grid (simple, dependency-free). */
@@ -46,6 +61,9 @@ export default function ReviewsSection() {
     []
   );
 
+  const ratingAverage = 4.8;
+  const ratingCount = 1264;
+
   return (
     <section id="reviews" className="section" aria-label="Customer reviews">
       <div className="container">
@@ -53,17 +71,30 @@ export default function ReviewsSection() {
           <div>
             <h2 className="sectionTitle">Trusted by everyday professionals</h2>
             <p className="sectionSubtitle">
-              Real feedback from customers who wear these pieces on repeat.
+              Feedback from customers who want classic pieces that perform in real workdays—without the
+              footprint.
             </p>
           </div>
-          <span style={{ fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
-            Average rating: <strong style={{ color: "var(--color-text)" }}>4.8</strong>
-          </span>
+
+          {/* Optional rating summary: kept static and lightweight. */}
+          <div aria-label="Rating summary" style={{ textAlign: "right" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, justifyContent: "flex-end" }}>
+              <StarsInline rating={ratingAverage} />
+              <span style={{ fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
+                <strong style={{ color: "var(--color-text)" }}>{ratingAverage.toFixed(1)}</strong>/5
+              </span>
+            </div>
+            <div style={{ fontSize: "var(--text-xs)", color: "var(--color-text-muted)", marginTop: 4 }}>
+              Based on {ratingCount.toLocaleString()} reviews
+            </div>
+          </div>
         </div>
 
-        <div className="grid3">
+        <div className="grid3" role="list" aria-label="Customer review highlights">
           {reviews.slice(0, 6).map((r) => (
-            <ReviewCard key={`${r.name}-${r.role}`} {...r} />
+            <div key={`${r.name}-${r.role}`} role="listitem">
+              <ReviewCard {...r} />
+            </div>
           ))}
         </div>
       </div>

@@ -67,9 +67,33 @@ export default function Footer() {
 
             <div className="footerMiniCard" aria-label="Store information">
               <div className="footerMiniTitle">Store info</div>
-              <div className="footerMiniText">100 Market Street, Suite 12</div>
-              <div className="footerMiniText">Mon–Fri: 9am–6pm</div>
-              <div className="footerMiniText">hello@sustainably.example</div>
+
+              <div className="footerMiniText" style={{ marginBottom: 8 }}>
+                <strong style={{ color: "rgba(255,255,255,0.92)", fontWeight: 600 }}>Address</strong>
+                <div>100 Market Street, Suite 12</div>
+                <div>San Francisco, CA 94105</div>
+              </div>
+
+              <div className="footerMiniText" style={{ marginBottom: 8 }}>
+                <strong style={{ color: "rgba(255,255,255,0.92)", fontWeight: 600 }}>Hours</strong>
+                <div>Mon–Fri: 9:00am–6:00pm</div>
+                <div>Sat: 10:00am–4:00pm</div>
+                <div>Sun: Closed</div>
+              </div>
+
+              <div className="footerMiniText">
+                <strong style={{ color: "rgba(255,255,255,0.92)", fontWeight: 600 }}>Contact</strong>
+                <div>
+                  <a href="mailto:hello@sustainably.example" style={{ textDecoration: "underline" }}>
+                    hello@sustainably.example
+                  </a>
+                </div>
+                <div>
+                  <a href="tel:+14155550100" style={{ textDecoration: "underline" }}>
+                    (415) 555‑0100
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -101,7 +125,11 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
               />
-              <button type="submit" className="btn" style={{ background: "var(--color-secondary)", color: "#111827" }}>
+              <button
+                type="submit"
+                className="btn"
+                style={{ background: "var(--color-secondary)", color: "#111827" }}
+              >
                 Sign up
               </button>
             </form>

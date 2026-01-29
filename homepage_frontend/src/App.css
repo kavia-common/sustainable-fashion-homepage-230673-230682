@@ -21,13 +21,19 @@
   z-index: 100;
 }
 
-.skipLink:focus {
+.skipLink:focus,
+.skipLink:focus-visible {
   transform: translateY(0);
 }
 
 :focus-visible {
   outline: 3px solid rgba(245, 158, 11, 0.55);
   outline-offset: 3px;
+}
+
+/* Avoid double focus styles in browsers that support :focus-visible. */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Smooth anchors for the standalone homepage experience. */
@@ -202,6 +208,26 @@ html {
 
 .mobileMenuOpen {
   display: block;
+}
+
+@media (max-width: 860px) {
+  .mobileMenuOpen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .mobileMenuOpen .btn {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
 }
 
 /* ===== Hero ===== */
