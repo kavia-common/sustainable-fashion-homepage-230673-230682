@@ -64,6 +64,13 @@ export default function Footer() {
               <a href="#sustainability">Sustainability</a>
               <a href="#footer">Support (placeholder)</a>
             </div>
+
+            <div className="footerMiniCard" aria-label="Store information">
+              <div className="footerMiniTitle">Store info</div>
+              <div className="footerMiniText">100 Market Street, Suite 12</div>
+              <div className="footerMiniText">Mon–Fri: 9am–6pm</div>
+              <div className="footerMiniText">hello@sustainably.example</div>
+            </div>
           </div>
 
           <div>

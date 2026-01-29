@@ -58,6 +58,23 @@ export default function Hero() {
           </div>
         </aside>
       </div>
+
+      <div className="container">
+        <div className="trustBar" role="list" aria-label="Brand assurances">
+          <div className="trustItem" role="listitem">
+            <div className="trustTitle">Certified fibers</div>
+            <div className="trustText">Organic cotton, recycled blends, and verified sourcing.</div>
+          </div>
+          <div className="trustItem" role="listitem">
+            <div className="trustTitle">Transparent pricing</div>
+            <div className="trustText">Material + labor breakdowns included on every drop.</div>
+          </div>
+          <div className="trustItem" role="listitem">
+            <div className="trustTitle">Low-impact packaging</div>
+            <div className="trustText">Minimal, recyclable, and designed for re-use.</div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

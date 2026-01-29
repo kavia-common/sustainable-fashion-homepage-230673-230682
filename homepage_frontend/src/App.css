@@ -4,6 +4,37 @@
   color: var(--color-text);
 }
 
+/* ===== Global UX/Accessibility polish ===== */
+.skipLink {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid rgba(30, 58, 138, 0.25);
+  color: var(--color-primary);
+  font-weight: var(--weight-semibold);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-160%);
+  transition: transform 0.15s ease;
+  z-index: 100;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 3px solid rgba(245, 158, 11, 0.55);
+  outline-offset: 3px;
+}
+
+/* Smooth anchors for the standalone homepage experience. */
+html {
+  scroll-behavior: smooth;
+}
+
 /* ===== Header ===== */
 .header {
   position: sticky;
@@ -272,6 +303,42 @@
   }
 }
 
+/* A compact, classic “assurance” bar beneath the hero */
+.trustBar {
+  margin: calc(var(--space-10) * -1) 0 var(--space-12) 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.trustItem {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(17, 24, 39, 0.10);
+  border-radius: 16px;
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.trustTitle {
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  color: rgba(30, 58, 138, 0.92);
+}
+
+.trustText {
+  margin-top: 6px;
+  color: rgba(17, 24, 39, 0.72);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .trustBar {
+    margin-top: calc(var(--space-8) * -1);
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===== Categories ===== */
 .grid4 {
   display: grid;
@@ -447,6 +514,26 @@
 .footerLinks a:hover {
   color: white;
   text-decoration: underline;
+}
+
+.footerMiniCard {
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.footerMiniTitle {
+  font-weight: var(--weight-semibold);
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 8px;
+}
+
+.footerMiniText {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
 }
 
 .socialRow {

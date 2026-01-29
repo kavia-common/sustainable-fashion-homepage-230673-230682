@@ -12,8 +12,13 @@ function App() {
   /** Application root that composes the complete homepage (no backend calls). */
   return (
     <div className="appRoot" id="top">
+      {/* Accessibility: allows keyboard users to jump past repetitive navigation. */}
+      <a className="skipLink" href="#main">
+        Skip to content
+      </a>
+
       <Header />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <CategoriesGrid />
         <ReviewsSection />
